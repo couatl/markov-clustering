@@ -35,27 +35,32 @@ def adamar_pow(matrix, power):
 
     return buffer
 
-
 def matrix_pow(matrix, power):
-    buffer = [[0 for i in range(len(matrix))] for j in range(len(matrix))]
-    turns = 1
-    while (1):
-        m = power % 2
-        power = power / 2
+    result = matrix
+    for i in range(1, power):
+        result = multiply(result, matrix)
+    return result
 
-        if m == 1 and turns == 1:
-            buffer = matrix
-            turns = 0
-            if power == 0:
-                break
-            else:
-                matrix = multiply(matrix, matrix)
-                continue
-        if m == 1:
-            matrix = multiply(buffer, matrix)
-        if power == 0:
-            break
-
-    matrix = multiply(matrix, matrix)
-
-    return matrix
+# def matrix_pow(matrix, power):
+#     buffer = [[0 for i in range(len(matrix))] for j in range(len(matrix))]
+#     turns = 1
+#     while (1):
+#         m = power % 2
+#         power = power / 2
+#
+#         if m == 1 and turns == 1:
+#             buffer = matrix
+#             turns = 0
+#             if power == 0:
+#                 break
+#             else:
+#                 matrix = multiply(matrix, matrix)
+#                 continue
+#         if m == 1:
+#             matrix = multiply(buffer, matrix)
+#         if power == 0:
+#             break
+#
+#     matrix = multiply(matrix, matrix)
+#
+#     return matrix
