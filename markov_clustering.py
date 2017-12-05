@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-from public.matrix import normalize, multiply, pow
+from public.matrix import normalize, multiply, matrix_pow, adamar_pow
 from public.reader import reader
 
 if __name__ == '__main__':
@@ -11,6 +11,6 @@ if __name__ == '__main__':
         raise Exception('Enter input filename!')
     m = reader(filename)
     print m
-    print normalize(m)
     print multiply(m, m)
-    print pow(m, 3)
+    print matrix_pow(m, 3)
+    print adamar_pow(m, 3)
