@@ -1,7 +1,7 @@
 from public.inflation import inflation
 from public.expansion import expansion
 from public.matrix import add_self_loops, normalize, \
-    converged, rounding
+    converged
 
 import config
 
@@ -18,9 +18,8 @@ def mcl(matrix, expand_factor=config.EXPAND_FACTOR,
         lastMatrix = matrix
         matrix = inflation(matrix, inflate_factor)
         matrix = expansion(matrix, expand_factor)
-        if converged(matrix, lastMatrix):
+        if converged(matrix, lastMatrix, accuracy):
             # Написать номер цикла завершения
             break
-        matrix = rounding(matrix, accuracy)
 
     return matrix

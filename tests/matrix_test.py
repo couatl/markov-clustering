@@ -4,7 +4,8 @@
 
 import unittest
 
-from public.matrix import normalize, adamar_pow, multiply, matrix_pow, add_self_loops
+from public.matrix import normalize, adamar_pow, multiply,\
+    matrix_pow, add_self_loops, converged
 
 class MatrixTest(unittest.TestCase):
     def test_normalize(self):
@@ -65,6 +66,24 @@ class MatrixTest(unittest.TestCase):
                          [1, 1, 2]]
 
         self.assertEqual(add_self_loops(test_matrix, 2), result_matrix)
+
+    def test_converged(self):
+        test_matrix = [[0.03, 1, 0],
+                       [1, 0, 3],
+                       [0.0008, 1, 1]]
+
+        self.assertEqual(converged(test_matrix, test_matrix), True)
+
+    def test_converged_accuracy(self):
+        test_matrixA = [[0.03, 1, 0],
+                       [1, 0, 3],
+                       [0.0008, 1, 1]]
+
+        test_matrixB = [[0.03005, 1, 0],
+                       [1, 0, 3],
+                       [0.00087, 1, 1]]
+
+        self.assertEqual(converged(test_matrixA, test_matrixB, 1e-3), True)
 
 if __name__ == '__main__':
     unittest.main()
