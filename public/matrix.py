@@ -1,8 +1,11 @@
-#coding=utf8
+# coding=utf8
 
 class MatrixException(Exception):
     def __init__(self, msg):
         self.msg = msg
+
+class ErrorMessages:
+    NOT_SQUARED = 'Матрица графа неквадратная! Проверьте, все ли верно.'
 
 def normalize(matrix):
     column_sums = []
@@ -23,6 +26,7 @@ def normalize(matrix):
 
     return normalized
 
+
 def multiply(a, b):
     matrix = [[0 for i in range(len(a))] for j in range(len(b))]
     for i in range(len(a)):
@@ -32,6 +36,7 @@ def multiply(a, b):
 
     return matrix
 
+
 def adamar_pow(matrix, power):
     buffer = [[0 for i in range(len(matrix))] for j in range(len(matrix))]
     for i in range(len(matrix)):
@@ -40,27 +45,41 @@ def adamar_pow(matrix, power):
 
     return buffer
 
+
 def matrix_pow(matrix, power):
     result = matrix
     for i in range(1, power):
         result = multiply(result, matrix)
     return result
 
+
 def add_self_loops(matrix, loop_value):
     rows = len(matrix)
     columns = len(matrix[0])
 
     if rows != columns:
-        raise MatrixException('Матрица графа неквадратная! Проверьте, все ли верно.')
+        raise MatrixException(ErrorMessages.NOT_SQUARED)
 
     for i in range(len(matrix)):
         matrix[i][i] = loop_value
 
     return matrix
 
-def converged(a, b):
-    return a
 
+def converged(a, b):
+    for i in range(len(a)):
+        for j in range(len(a)):
+            if a[i][j] - b[i][j] != 0:
+                return False
+    return True
+
+
+def rounding(matrix, accuracy):
+    for i in range(len(matrix)):
+        for j in range(len(matrix)):
+            if matrix[i][j] <= accuracy:
+                matrix[i][j] = 0
+    return matrix
 
 # def matrix_pow(matrix, power):
 #     buffer = [[0 for i in range(len(matrix))] for j in range(len(matrix))]
