@@ -4,7 +4,7 @@
 
 import unittest
 
-from public.matrix import normalize, adamar_pow, multiply, matrix_pow
+from public.matrix import normalize, adamar_pow, multiply, matrix_pow, add_self_loops
 
 class MatrixTest(unittest.TestCase):
     def test_normalize(self):
@@ -55,6 +55,16 @@ class MatrixTest(unittest.TestCase):
 
         self.assertEqual(matrix_pow(test_matrix, 3), result_matrix)
 
+    def test_add_self_loops(self):
+        test_matrix = [[0, 1, 0],
+                       [1, 0, 3],
+                       [1, 1, 1]]
+
+        result_matrix = [[2, 1, 0],
+                         [1, 2, 3],
+                         [1, 1, 2]]
+
+        self.assertEqual(add_self_loops(test_matrix, 2), result_matrix)
 
 if __name__ == '__main__':
     unittest.main()

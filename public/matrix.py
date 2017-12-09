@@ -1,3 +1,9 @@
+#coding=utf8
+
+class MatrixException(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+
 def normalize(matrix):
     column_sums = []
     for column in zip(*matrix):
@@ -17,7 +23,6 @@ def normalize(matrix):
 
     return normalized
 
-
 def multiply(a, b):
     matrix = [[0 for i in range(len(a))] for j in range(len(b))]
     for i in range(len(a)):
@@ -27,7 +32,6 @@ def multiply(a, b):
 
     return matrix
 
-
 def adamar_pow(matrix, power):
     buffer = [[0 for i in range(len(matrix))] for j in range(len(matrix))]
     for i in range(len(matrix)):
@@ -36,12 +40,27 @@ def adamar_pow(matrix, power):
 
     return buffer
 
-
 def matrix_pow(matrix, power):
     result = matrix
     for i in range(1, power):
         result = multiply(result, matrix)
     return result
+
+def add_self_loops(matrix, loop_value):
+    rows = len(matrix)
+    columns = len(matrix[0])
+
+    if rows != columns:
+        raise MatrixException('Матрица графа неквадратная! Проверьте, все ли верно.')
+
+    for i in range(len(matrix)):
+        matrix[i][i] = loop_value
+
+    return matrix
+
+def converged(a, b):
+    return a
+
 
 # def matrix_pow(matrix, power):
 #     buffer = [[0 for i in range(len(matrix))] for j in range(len(matrix))]
