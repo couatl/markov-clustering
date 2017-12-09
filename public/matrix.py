@@ -8,7 +8,7 @@ def normalize(matrix):
         i = 0
         sub_list = []
         for element in row:
-            if (column_sums[i] != 0):
+            if column_sums[i] != 0:
                 sub_list.append(float(element) / column_sums[i])
             else:
                 sub_list.append(float(element))
@@ -27,13 +27,15 @@ def multiply(a, b):
 
     return matrix
 
+
 def adamar_pow(matrix, power):
     buffer = [[0 for i in range(len(matrix))] for j in range(len(matrix))]
     for i in range(len(matrix)):
         for j in range(len(matrix)):
-            buffer[i][j] += matrix[i][j]**power
+            buffer[i][j] += matrix[i][j] ** power
 
     return buffer
+
 
 def matrix_pow(matrix, power):
     result = matrix
