@@ -14,7 +14,7 @@ def get_clusters(matrix):
     return clust_map
 
 
-def clusters_to_output(clusters):
-    print("Кластеры:")
+def clusters_to_output(clusters, output_file):
+    output_file.write("Кластеры:\n")
     for k, v in clusters.items():
-        print('{}, {}'.format(k, v))
+        output_file.write('{}, {}\n'.format(k, v))
