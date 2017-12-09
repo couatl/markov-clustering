@@ -1,4 +1,4 @@
-from matrix import normalize, adamar_pow
+from public.matrix import normalize, adamar_pow
 
 
 def inflation(matrix, inflate_factor):

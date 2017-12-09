@@ -1,5 +1,3 @@
-import csv
-
 def reader(filename):
     matrix = []
     for r in open(filename):
