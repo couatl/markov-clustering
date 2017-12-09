@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# python -m unittest tests.matrix_test
+# python -m unittest -v tests.matrix_test
 
 import unittest
 
@@ -73,17 +73,6 @@ class MatrixTest(unittest.TestCase):
                        [0.0008, 1, 1]]
 
         self.assertEqual(converged(test_matrix, test_matrix), True)
-
-    def test_converged_accuracy(self):
-        test_matrixA = [[0.03, 1, 0],
-                       [1, 0, 3],
-                       [0.0008, 1, 1]]
-
-        test_matrixB = [[0.03005, 1, 0],
-                       [1, 0, 3],
-                       [0.00087, 1, 1]]
-
-        self.assertEqual(converged(test_matrixA, test_matrixB, 1e-3), True)
 
 if __name__ == '__main__':
     unittest.main()

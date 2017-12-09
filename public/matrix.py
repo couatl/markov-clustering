@@ -1,5 +1,6 @@
 # coding=utf8
 
+
 class MatrixException(Exception):
     def __init__(self, msg):
         self.msg = msg
@@ -67,11 +68,17 @@ def add_self_loops(matrix, loop_value):
 
     return matrix
 
+def rounding(matrix, accuracy):
+    for i in range(len(matrix)):
+        for j in range(len(matrix)):
+            if matrix[i][j] <= accuracy:
+                matrix[i][j] = 0
+    return matrix
 
-def converged(a, b, accuracy=1e-04):
+def converged(a, b):
     for i in range(len(a)):
         for j in range(len(a)):
-            if a[i][j] - b[i][j] >= accuracy:
+            if a[i][j] - b[i][j] != 0:
                 return False
     return True
 
