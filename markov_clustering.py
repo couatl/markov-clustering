@@ -6,6 +6,8 @@ from public.mcl_manager import mcl_manager
 from public.matrix import MatrixException
 
 if __name__ == '__main__':
+
+
     try:
         filename = sys.argv[1]
     except:
