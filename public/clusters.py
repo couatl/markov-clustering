@@ -1,5 +1,6 @@
 # coding=utf8
 
+
 def get_clusters(matrix):
     clusters = []
 
