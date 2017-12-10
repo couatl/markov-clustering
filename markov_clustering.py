@@ -11,10 +11,9 @@ if __name__ == '__main__':
     except:
         raise Exception('Забыли ввести имя файла на вход!')
 
-    output_info = sys.argv[2] if len(sys.argv) > 2 else 'output_info.txt'
-    output_graph = sys.argv[3] if len(sys.argv) > 3 else 'output_graph.csv'
+    output = sys.argv[2] if len(sys.argv) > 2 else 'output'
 
     try:
-        solve(filename, output_info, output_graph)
+        solve(filename, output)
     except MatrixException as e:
         print(e.msg)
