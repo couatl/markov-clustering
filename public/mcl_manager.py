@@ -1,7 +1,6 @@
 # coding=utf8
 
 import time
-import csv
 
 from public.mcl import mcl
 from public.clusters import clusters_to_output
@@ -16,7 +15,7 @@ def reader(filename):
     return matrix
 
 
-def solve(input_file, output_info='output'):
+def mcl_manager(input_file, output_info='output'):
     matrix = reader(input_file)
 
     begin_time = time.time()

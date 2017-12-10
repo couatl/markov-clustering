@@ -2,7 +2,7 @@
 
 import sys
 
-from public.solver import solve
+from public.mcl_manager import mcl_manager
 from public.matrix import MatrixException
 
 if __name__ == '__main__':
@@ -14,6 +14,6 @@ if __name__ == '__main__':
     output = sys.argv[2] if len(sys.argv) > 2 else 'output'
 
     try:
-        solve(filename, output)
+        mcl_manager(filename, output)
     except MatrixException as e:
         print(e.msg)
