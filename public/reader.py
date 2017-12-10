@@ -1,7 +1,7 @@
 def reader(filename):
     matrix = []
-    for r in open(filename):
-        r = r.strip().split(",")
-        matrix.append(list(map(lambda x: float(x.strip()), r)))
-
+    with open(filename) as input_file:
+        for r in input_file.readlines():
+            values = r.strip().split(",")
+            matrix.append([float(x.strip()) for x in values])
     return matrix
