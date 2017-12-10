@@ -114,7 +114,7 @@ python -m unittest -v tests.mcl_test
 
 Итого вычислительная сложность: 
 
-[42](https://latex.codecogs.com/gif.latex?O%28n%5E%7Blog_%7B2%7D7%7D%29)
+[42](https://latex.codecogs.com/gif.latex?O%28n%5E%7Blog_%7B2%7D7%7D%29) (нажми меня)
 
 ### Сложность по памяти
 
