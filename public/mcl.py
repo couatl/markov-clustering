@@ -1,14 +1,18 @@
 # coding=utf8
 
-import time
 
-from public.inflation import inflation
-from public.expansion import expansion
 from public.matrix import add_self_loops, normalize, \
-    converged, rounding
-
-import public.config as config
+    converged, rounding, normalize, adamar_pow, matrix_pow
 from public.clusters import get_clusters
+import public.config as config
+
+
+def expansion(matrix, expand_factor):
+    return matrix_pow(matrix, expand_factor)
+
+
+def inflation(matrix, inflate_factor):
+    return normalize(adamar_pow(matrix, inflate_factor))
 
 
 def mcl(matrix, expand_factor=config.EXPAND_FACTOR,

@@ -2,7 +2,7 @@
 
 import sys
 
-from public.solver import solver
+from public.solver import solve
 from public.matrix import MatrixException
 
 if __name__ == '__main__':
@@ -15,6 +15,6 @@ if __name__ == '__main__':
     output_graph = sys.argv[3] if len(sys.argv) > 3 else 'output_graph.csv'
 
     try:
-        solver(filename, output_info, output_graph)
+        solve(filename, output_info, output_graph)
     except MatrixException as e:
         print(e.msg)

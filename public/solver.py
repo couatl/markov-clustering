@@ -5,10 +5,18 @@ import csv
 
 from public.mcl import mcl
 from public.clusters import clusters_to_output
-from public.reader import reader
 
 
-def solver(input_file, output_info='output_info.txt', output_graph='output_graph.csv'):
+def reader(filename):
+    matrix = []
+    with open(filename) as input_file:
+        for r in input_file.readlines():
+            values = r.strip().split(",")
+            matrix.append([float(x.strip()) for x in values])
+    return matrix
+
+
+def solve(input_file, output_info='output_info.txt', output_graph='output_graph.csv'):
     matrix = reader(input_file)
 
     begin_time = time.time()

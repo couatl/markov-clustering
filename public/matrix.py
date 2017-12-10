@@ -156,24 +156,3 @@ def strassen_multiplication(a, b):
                 c[i + (length / 2)][j + (length / 2)] = c22[i][j]
 
         return c
-
-# def matrix_pow(matrix, p):
-#     buffer = [[0 for i in range(len(matrix))] for j in range(len(matrix))]
-#     turns = True
-#     power = p
-#     while True:
-#         m = power % 2
-#         power = int(power / 2)
-#
-#         if m == 1 and turns and power != 0:
-#             buffer = matrix
-#             turns = False
-#             matrix = multiply(matrix, matrix)
-#             continue
-#         if m == 1:
-#             matrix = multiply(buffer, matrix)
-#         if power == 0:
-#             break
-#         matrix = multiply(matrix, matrix)
-#
-#     return matrix
