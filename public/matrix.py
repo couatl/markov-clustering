@@ -34,13 +34,10 @@ def multiply(a, b):
     length = len(a)
     matrix = [[0 for i in range(length)] for j in range(length)]
 
-    leaf = 128
-    if length > leaf:
-        matrix = strassen_multiplication(a, b, matrix)
-    else:
-        for i in range(len(a)):
-            for j in range(len(a)):
-                for k in range(len(a)):
+    for i in range(len(a)):
+        for k in range(len(a)):
+            if a[i][k]:
+                for j in range(len(a)):
                     matrix[i][j] += a[i][k] * b[k][j]
     return matrix
 
@@ -81,71 +78,3 @@ def converged(a, b):
             if a[i][j] - b[i][j] != 0:
                 return False
     return True
-
-
-def add(a, b):
-    length = len(a)
-    c = [[0 for x in range(length)] for y in range(length)]
-
-    for i in range(0, length):
-        for j in range(0, length):
-            c[i][j] = a[i][j] + b[i][j]
-
-    return c
-
-
-def subtract(a, b):
-    length = len(a)
-    c = [[0 for x in range(length)] for y in range(length)]
-
-    for i in range(0, length):
-        for j in range(0, length):
-            c[i][j] = a[i][j] - b[i][j]
-
-    return c
-
-
-def strassen_multiplication(a, b, c):
-    length = len(a)
-
-    a11 = [[0 for x in range(length / 2)] for y in range(length / 2)]
-    a12 = [[0 for x in range(length / 2)] for y in range(length / 2)]
-    a21 = [[0 for x in range(length / 2)] for y in range(length / 2)]
-    a22 = [[0 for x in range(length / 2)] for y in range(length / 2)]
-    b11 = [[0 for x in range(length / 2)] for y in range(length / 2)]
-    b12 = [[0 for x in range(length / 2)] for y in range(length / 2)]
-    b21 = [[0 for x in range(length / 2)] for y in range(length / 2)]
-    b22 = [[0 for x in range(length / 2)] for y in range(length / 2)]
-
-    for i in range(0, length / 2):
-        for j in range(0, length / 2):
-            a11[i][j] = a[i][j]
-            a12[i][j] = a[i][j + (length / 2)]
-            a21[i][j] = a[i + (length / 2)][j]
-            a22[i][j] = a[i + (length / 2)][j + (length / 2)]
-            b11[i][j] = b[i][j]
-            b12[i][j] = b[i][j + (length / 2)]
-            b21[i][j] = b[i + (length / 2)][j]
-            b22[i][j] = b[i + (length / 2)][j + (length / 2)]
-
-    p1 = multiply(a11, subtract(b12, b22))
-    p2 = multiply(add(a11, a12), b22)
-    p3 = multiply(add(a21, a22), b11)
-    p4 = multiply(a11, subtract(b21, b11))
-    p5 = multiply(add(a11, a22), add(b11, b12))
-    p6 = multiply(subtract(a12, a22), add(b21, b22))
-    p7 = multiply(subtract(a11, a21), add(b11, b12))
-
-    c11 = add(subtract(add(p5, p4), p2), p6)  # c11 = p5 + p4 - p2 + p6
-    c12 = add(p1, p2)  # c12 = p1 + p2
-    c21 = add(p3, p4)  # c21 = p3 + p4
-    c22 = subtract(subtract(add(p5, p1), p3), p7)  # c22 = p5 + p1 - p3 - p7
-
-    for i in range(0, length / 2):
-        for j in range(0, length / 2):
-            c[i][j] = c11[i][j]
-            c[i][j + (length / 2)] = c12[i][j]
-            c[i + (length / 2)][j] = c21[i][j]
-            c[i + (length / 2)][j + (length / 2)] = c22[i][j]
-
-    return c

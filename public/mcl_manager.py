@@ -5,7 +5,6 @@ import time
 from public.mcl import mcl
 from public.clusters import clusters_to_output
 
-
 def reader(filename):
     matrix = []
     with open(filename) as input_file:
